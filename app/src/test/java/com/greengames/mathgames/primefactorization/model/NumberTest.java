@@ -96,4 +96,17 @@ public class NumberTest {
         }
         Assertions.assertThat(product).isEqualTo(number.getNumber());
     }
+
+    @Test
+    public void list_primes_under_number() throws Exception {
+        // Given
+        final int max = 47;
+        final List<Integer> expectedPrimes = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47);
+
+        // When
+        List<Integer> primes = Number.primesUnder(max);
+
+        // Then
+        Assertions.assertThat(primes).isEqualTo(expectedPrimes);
+    }
 }

@@ -56,4 +56,19 @@ public class Number {
         }
         return true;
     }
+
+    /**
+     * Give all primesUnder under max. 1 is excluded.
+     *
+     * @param max
+     */
+    public static List<Integer> primesUnder(int max) {
+        List<Integer> primes = new ArrayList<>();
+        for (int i = 2; i <= max; ++i) {
+            if (isPrime(i)) {
+                primes.add(i);
+            }
+        }
+        return primes;
+    }
 }
