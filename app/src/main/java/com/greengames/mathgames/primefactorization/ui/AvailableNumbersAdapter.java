@@ -1,11 +1,13 @@
 package com.greengames.mathgames.primefactorization.ui;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.GridView;
+
+import com.greengames.mathgames.R;
 
 import java.util.List;
 
@@ -17,11 +19,13 @@ public class AvailableNumbersAdapter extends BaseAdapter {
     private final int max;
     private final List<Integer> primes;
     private Context context;
+    private LayoutInflater layoutInflater;
 
     public AvailableNumbersAdapter(Context context, int max) {
         this.context = context;
         this.max = max;
         primes = com.greengames.mathgames.primefactorization.model.Number.primesUnder(max);
+        layoutInflater = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     }
 
     @Override
@@ -43,8 +47,7 @@ public class AvailableNumbersAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         Button button;
         if (view == null) {
-            button = new Button(context);
-            button.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.MATCH_PARENT, GridView.LayoutParams.WRAP_CONTENT));
+            button = (Button) layoutInflater.inflate(R.layout.available_prime_item, null);
         } else {
             button = (Button) view;
         }
