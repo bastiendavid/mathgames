@@ -1,4 +1,4 @@
-package com.greengames.mathgames.primefactorization;
+package com.greengames.mathgames.primefactorization.ui;
 
 import com.greengames.mathgames.R;
 import com.greengames.mathgames.commons.ui.BaseActivity;
