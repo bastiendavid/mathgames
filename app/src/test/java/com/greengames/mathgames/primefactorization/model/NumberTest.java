@@ -3,6 +3,9 @@ package com.greengames.mathgames.primefactorization.model;
 import org.fest.assertions.api.Assertions;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class NumberTest {
 
     @Test
@@ -29,5 +32,68 @@ public class NumberTest {
             // Then
             Assertions.assertThat(isNotPrime).describedAs(String.format("%d should not be prime", notPrime)).isFalse();
         }
+    }
+
+    @Test
+    public void factorize_some_not_prime_number() throws Exception {
+        // Given
+        final int numberToFactor = 210;
+        final List<Integer> expectedFactors = Arrays.asList(2, 3, 5, 7);
+        Number number = new Number(1);
+        number.setNumber(numberToFactor);
+
+        // When
+        number.factorize();
+        List<Integer> factors = number.getFactors();
+
+        // Then
+        Assertions.assertThat(factors).isEqualTo(expectedFactors);
+    }
+
+    @Test
+    public void factorize_another_not_prime_number() throws Exception {
+        // Given
+        final int numberToFactor = 448;
+        final List<Integer> expectedFactors = Arrays.asList(2, 2, 2, 2, 2, 2, 7);
+        Number number = new Number(1);
+        number.setNumber(numberToFactor);
+
+        // When
+        number.factorize();
+        List<Integer> factors = number.getFactors();
+
+        // Then
+        Assertions.assertThat(factors).isEqualTo(expectedFactors);
+    }
+
+    @Test
+    public void factorize_prime_number() throws Exception {
+        // Given
+        final int prime = 97;
+        Number number = new Number(1);
+        number.setNumber(prime);
+
+        // When
+        number.factorize();
+        List<Integer> factors = number.getFactors();
+
+        // Then
+        Assertions.assertThat(factors).containsExactly(prime);
+    }
+
+    @Test
+    public void factorize_random_number() throws Exception {
+        // Given
+        Number number = new Number(64000000);
+
+        // When
+        List<Integer> factors = number.getFactors();
+
+        // Then
+        int product = 1;
+        for (int factor : factors) {
+            product *= factor;
+        }
+        Assertions.assertThat(product).isEqualTo(number.getNumber());
     }
 }
